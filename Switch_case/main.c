@@ -46,7 +46,6 @@ int main(int argc, char *argv[])
 
             printf("Уравнение не имеет корней");
             return(0);
-
             }
             else {
 
