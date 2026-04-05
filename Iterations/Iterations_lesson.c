@@ -1,23 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
+#include "S_C_MATH.h"
+/*#define PI 3.1415
+#define S_CIRCLE(a) ((PI*(r*r)))
+#define C_CIRCLE(b) (((2*PI)*b))*/
 
 int main() {
-	
-	int a,b,t1,t2;
-	printf("Input\n");
-	scanf("%d %d", &a, &b);
-	
-	t1=a;
-	t2=b;
-	
-	while (t2 != 0){
-		int tmp = t2;
-		t2 = t1 % t2;
-		t1=tmp;
-	}
-    
-    printf ("%d", t1);
+	float r = 0;
+	printf("Введите радиус окружности:\n");
+	scanf("%f", &r);
+	float s = S_CIRCLE(r);
+	float c = C_CIRCLE(r);
+	printf("S = %f\nC = %f\n",s,c);
     
 	return 0;
 }
