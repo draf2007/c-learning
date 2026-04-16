@@ -8,6 +8,8 @@
 *.dll
 *.so
 *.dylib
+*.dev
+*.layout
 
 # Отладка и временные файлы
 *.log
