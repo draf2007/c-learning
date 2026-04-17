@@ -55,19 +55,7 @@ int main(int argc, char *argv[]) {
 
     puts("");
     int par_array = 0;
-    float temp = 0;
-    int sum_array = 0;
-    for (int i = 0; i < num_elements; ++i)
-    {
-        
-        sum_array += nums[i];
-        
-    }
-    
-    temp = (float)num_elements / 2;
-    temp = temp - (long) temp;
-    
-    if (temp != 0.0)
+    if (num_elements % 2 != 0)
     {
         par_array = 1;// в массиве нечетное кол-во элементов
     }
@@ -76,9 +64,7 @@ int main(int argc, char *argv[]) {
     {
     case 0:{
         /*Четное кол-во->берём среднее арифметическое двух средних элементов*/
-        int mediana_1 = nums[(num_elements-1)/2];
-        int mediana_2 = nums[((num_elements-1)/2)+1];
-        float mediana = (mediana_1+mediana_2)/2;
+        double mediana = (nums[num_elements / 2 - 1] + nums[num_elements / 2] / 2);
         printf("\nMediana = %.2f\n",mediana);        
 
     }
@@ -86,7 +72,7 @@ int main(int argc, char *argv[]) {
     
     case 1:{
         /*Нечетное кол-во->берём значение среднего элемента*/
-        printf("\nMediana = %d\n",nums[((int)num_elements)/2]);
+        printf("\nMediana = %d\n",nums[(num_elements)/2]);
     }
     default:
         break;
