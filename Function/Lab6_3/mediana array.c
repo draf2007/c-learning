@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
     printf("Введите кол-во элементов массива:\n");
     scanf("%d",&num_elements);
     printf("Введите значения элементов массива:\n");
-    int nums[num_elements]={};
+    int nums[num_elements];
 
 /*---------------------------Заполняем массив 0-----------------------------------*/
 
