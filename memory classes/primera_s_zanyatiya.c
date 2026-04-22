@@ -1,7 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "module.h"
-//#include "module.c"
+#include "module.c"
+
+int visitCouter() { // 
+                                //
+    static int vCounter;        //статическая локальная переменная видна только в функции, но время жизни у неё глобальное
+    vCounter++;                 //поэтому вызов её в main будет добавлять к ней +1 и сохраняться она хранится в сегменте данных 
+    return vCounter;            //поэтому она не уничтожается после вызова функции и сохраняет значение при каждом вызове в данном случае 
+                                //при первом вызове vCounter=1, при втором vCounter = 1+1 = 2, при третьем vCounter = 1+1+1 = 3 и так далее
+
+}
 
 /*время жизни globalZ до конца работы программы и видна во всём теле программы*/
 int globalZ = 50; // размещается в сегменте данных (data segment), доступна как в main так и в функциях
@@ -18,6 +27,12 @@ int add_to_register(register int a, register int b){   // модификатор
 }                                                      // так как регистровый сегмент памяти быстрый, но пропадает возможность работать с адресом переменных.
 /*--------------------------------------------------*/ 
 int main(int argc, char *argv[]) {
+    
+    
+    printf("Visit Counter = %d\n",visitCouter());
+    printf("Visit Counter = %d\n",visitCouter());
+    printf("Visit Counter = %d\n",visitCouter()); 
+    
 
     auto double pi = 3.1415; // модифкатор auto - выделенеие памяти под переменную на стеке (для локальных переменных класс памят по умолчаню)
     //int x = 5; // auto без указаня это тип int по умолчанию (размещаетя на стеке)
@@ -41,5 +56,16 @@ int main(int argc, char *argv[]) {
     printf("addValue moduleGlobal = %d\n",addValue(2));
     printf("minusValue moduleGlobal = %d\n",minusValue(69));
     //printf("%d\n",moduleGlobal); // не сработает moduleGlobal statatic в module.c
+
+    const double var_pi = 3.1415;       //пример работы с константными переменными, для компилятора они read-only,и напрямую их поменять нельзя
+    printf("var_pi = %fl\n",var_pi);    
+    double *ppi = &var_pi;              //но если взять адрес такой переменной, и поместить его в указатель 
+    (*ppi) = 4.000;                     //потом перейдти по аресу указателя и присвоить другое значение `более подробный вид (double* ppi = (double*)&pi) тут мы приводим const double* -> double*
+    printf("var_pi = %fl\n",var_pi);    //то значение константной переменной измениться, именно по этому их называют константной переменной, она защищена от
+                                        //смены значения напрямую
+    
+
+
     return 0;
+
 }
