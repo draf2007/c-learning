@@ -57,7 +57,9 @@ int main(int argc, char *argv[]) {
     printf("minusValue moduleGlobal = %d\n",minusValue(69));
     //printf("%d\n",moduleGlobal); // не сработает moduleGlobal statatic в module.c
 
+
     const double var_pi = 3.1415;       //пример работы с константными переменными, для компилятора они read-only,и напрямую их поменять нельзя
+    //var_pi=3.25;
     printf("var_pi = %fl\n",var_pi);    
     double *ppi = &var_pi;              //но если взять адрес такой переменной, и поместить его в указатель 
     (*ppi) = 4.000;                     //потом перейдти по аресу указателя и присвоить другое значение `более подробный вид (double* ppi = (double*)&pi) тут мы приводим const double* -> double*
